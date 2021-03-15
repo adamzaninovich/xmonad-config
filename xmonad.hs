@@ -46,11 +46,13 @@ myStartupHook = do
 
 -- vars
 myTerminal = "alacritty"
+dmenuCmd = "dmenu_run -i -l 20 -nb '#2e3440' -nf '#d5b3d2' -sb '#d5b3d2' -sf '#2e3440' -fn 'FiraCode Nerd Font:Bold:pixelsize=20'"
 
 -- colours
 --nord
 nordBrightRed = "#e79397"
 nordBrightGreen = "#c3d9a9"
+nordBrightPurple = "#d5b3d2"
 nordBlack = "#3b4252"
 nordBackground = "#2e3440"
 nordForeground = "#d8dee9"
@@ -123,7 +125,8 @@ myManageHook = composeAll . concat $
 
 
 -- myLayout = spacingRaw True (Border 0 5 5 5) True (Border 5 5 5 5) True $ avoidStruts $ mkToggle (NBFULL ?? NOBORDERS ?? EOT) $ tiled ||| Mirror tiled ||| spiral (6/7)  ||| ThreeColMid 1 (3/100) (1/2) ||| Full
-myLayout = spacingRaw True (Border 0 5 5 5) True (Border 5 5 5 5) True $ avoidStruts $ mkToggle (NBFULL ?? NOBORDERS ?? EOT) $ tiled ||| Full
+-- myLayout = spacingRaw True (Border 0 0 0 0) True (Border 0 0 0 0) False $ avoidStruts $ mkToggle (NBFULL ?? NOBORDERS ?? EOT) $ tiled ||| Full
+myLayout = avoidStruts $ mkToggle (NBFULL ?? NOBORDERS ?? EOT) $ tiled ||| Full
     where
         tiled = Tall nmaster delta tiled_ratio
         nmaster = 1
@@ -151,12 +154,10 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   ----------------------------------------------------------------------
   -- SUPER + FUNCTION KEYS
 
-  [
-  -- ((modMask, xK_e), spawn $ "atom" )
-    ((modMask, xK_c), spawn $ "conky-toggle" )
+  [((modMask, xK_c), spawn $ "conky-toggle" )
   , ((modMask, xK_f), sendMessage $ Toggle NBFULL)
   , ((modMask, xK_h), spawn $ myTerminal ++ " 'htop task manager' -e htop" )
-  -- , ((modMask, xK_m), spawn $ "pragha" )
+  , ((modMask, xK_p), spawn $ dmenuCmd )
   , ((modMask, xK_q), kill )
   -- , ((modMask, xK_r), spawn $ "rofi-theme-selector" )
   , ((modMask, xK_t), spawn $ myTerminal )
@@ -184,7 +185,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   -- SUPER + SHIFT KEYS
 
   , ((modMask .|. shiftMask , xK_Return ), spawn $ "thunar")
-  , ((modMask .|. shiftMask , xK_d ), spawn $ "dmenu_run -i -nb '#191919' -nf '#fea63c' -sb '#fea63c' -sf '#191919' -fn 'NotoMonoRegular:bold:pixelsize=14'")
+  , ((modMask .|. shiftMask , xK_d ), spawn $ dmenuCmd )
   , ((modMask .|. shiftMask , xK_r ), spawn $ "xmonad --recompile && xmonad --restart")
   , ((modMask .|. shiftMask , xK_q ), kill)
   -- , ((modMask .|. shiftMask , xK_x ), io (exitWith ExitSuccess))
@@ -377,7 +378,7 @@ main = do
             --myBaseConfig { keys = belgianKeys <+> keys belgianConfig }
 
               {startupHook = myStartupHook
-, layoutHook = gaps [(U,35), (D,5), (R,5), (L,5)] $ myLayout ||| layoutHook myBaseConfig
+, layoutHook = gaps [(U,40), (D,0), (R,0), (L,0)] $ myLayout ||| layoutHook myBaseConfig
 , manageHook = manageSpawn <+> myManageHook <+> manageHook myBaseConfig
 , modMask = myModMask
 , borderWidth = myBorderWidth
