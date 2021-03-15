@@ -42,37 +42,39 @@ import qualified DBus.Client as D
 
 myStartupHook = do
     spawn "$HOME/.xmonad/scripts/autostart.sh"
-    setWMName "LG3D"
+    setWMName "TachiWM"
 
--- vars
-myTerminal = "alacritty"
-dmenuCmd = "dmenu_run -i -l 20 -nb '#2e3440' -nf '#d5b3d2' -sb '#d5b3d2' -sf '#2e3440' -fn 'FiraCode Nerd Font:Bold:pixelsize=20'"
 
 -- colours
---nord
+-- nord
 nordBrightRed = "#e79397"
 nordBrightGreen = "#c3d9a9"
 nordBrightPurple = "#d5b3d2"
 nordBlack = "#3b4252"
 nordBackground = "#2e3440"
 nordForeground = "#d8dee9"
---settings
+
+dmenuFormat = "-nb '" ++ nordBackground ++ "' "
+           ++ "-nf '" ++ nordBrightPurple ++ "' "
+           ++ "-sb '" ++ nordBackground ++ "' "
+           ++ "-sf '" ++ nordBrightPurple ++ "' "
+           ++ "-fn 'FiraCode Nerd Font:Bold:pixelsize=20'"
+
+-- vars
+myTerminal = "alacritty"
+dmenuCmd = "dmenu_run -i -l 20 " ++ dmenuFormat
+
+-- settings
 normBord = nordBlack
 focdBord = nordBrightGreen
 fore     = nordForeground
 back     = nordBackground
 winType  = nordBrightRed
--- normBord = "#4c566a"
--- focdBord = "#5e81ac"
--- fore     = "#DEE3E0"
--- back     = "#282c34"
--- winType  = "#c678dd"
 
 --mod4Mask= super key
 --mod1Mask= alt key
 --controlMask= ctrl key
 --shiftMask= shift key
-
 myModMask = mod4Mask
 encodeCChar = map fromIntegral . B.unpack
 myFocusFollowsMouse = True
