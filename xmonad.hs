@@ -162,7 +162,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   , ((modMask, xK_p), spawn $ dmenuCmd )
   , ((modMask, xK_q), kill )
   -- , ((modMask, xK_r), spawn $ "rofi-theme-selector" )
-  , ((modMask, xK_t), spawn $ myTerminal )
+  , ((modMask, xK_t), spawn $ "$HOME/.xmonad/scripts/toggle-stalonebar.sh" )
   -- , ((modMask, xK_v), spawn $ "pavucontrol" )
   , ((modMask, xK_y), spawn $ "polybar-msg cmd toggle" )
   , ((modMask, xK_x), spawn $ "arcolinux-logout" )
