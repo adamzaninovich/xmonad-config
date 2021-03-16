@@ -158,7 +158,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 
   [((modMask, xK_c), spawn $ "conky-toggle" )
   , ((modMask, xK_f), sendMessage $ Toggle NBFULL)
-  , ((modMask, xK_h), spawn $ myTerminal ++ " 'htop task manager' -e htop" )
+  , ((modMask, xK_h), spawn $ myTerminal ++ " -t 'Activity Monitor | gotop' -e gotop" )
   , ((modMask, xK_p), spawn $ dmenuCmd )
   , ((modMask, xK_q), kill )
   -- , ((modMask, xK_r), spawn $ "rofi-theme-selector" )
@@ -326,7 +326,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   , ((controlMask .|. shiftMask , xK_l), sendMessage Expand)
 
   -- Push window back into tiling.
-  , ((controlMask .|. shiftMask , xK_t), withFocused $ windows . W.sink)
+  -- , ((controlMask .|. shiftMask , xK_t), withFocused $ windows . W.sink)
 
   -- Increment the number of windows in the master area.
   , ((controlMask .|. modMask, xK_Left), sendMessage (IncMasterN 1))
