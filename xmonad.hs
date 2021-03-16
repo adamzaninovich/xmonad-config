@@ -161,19 +161,19 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   , ((modMask, xK_h), spawn $ myTerminal ++ " -t 'Activity Monitor | gotop' -e gotop" )
   , ((modMask, xK_p), spawn $ dmenuCmd )
   , ((modMask, xK_q), kill )
-  -- , ((modMask, xK_r), spawn $ "rofi-theme-selector" )
   , ((modMask, xK_t), spawn $ "$HOME/.xmonad/scripts/toggle-stalonebar.sh" )
-  -- , ((modMask, xK_v), spawn $ "pavucontrol" )
   , ((modMask, xK_y), spawn $ "polybar-msg cmd toggle" )
   , ((modMask, xK_x), spawn $ "arcolinux-logout" )
   , ((modMask, xK_Escape), spawn $ "xkill" )
   , ((modMask, xK_Return), spawn $ myTerminal )
+  -- , ((modMask, xK_r), spawn $ "rofi-theme-selector" )
+  -- , ((modMask, xK_v), spawn $ "pavucontrol" )
   -- , ((modMask, xK_F1), spawn $ "vivaldi-stable" )
   -- , ((modMask, xK_F2), spawn $ "atom" )
   -- , ((modMask, xK_F3), spawn $ "inkscape" )
   -- , ((modMask, xK_F4), spawn $ "gimp" )
   -- , ((modMask, xK_F5), spawn $ "meld" )
-  , ((modMask, xK_F6), spawn $ "vlc --video-on-top" )
+  -- , ((modMask, xK_F6), spawn $ "vlc --video-on-top" )
   -- , ((modMask, xK_F7), spawn $ "virtualbox" )
   -- , ((modMask, xK_F8), spawn $ "thunar" )
   -- , ((modMask, xK_F9), spawn $ "evolution" )
@@ -284,7 +284,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   , ((modMask, xK_space), sendMessage NextLayout)
 
   --Focus selected desktop
-  , ((mod1Mask, xK_Tab), nextWS)
+  , ((mod1Mask, xK_Tab), windows W.focusDown)
 
   --Focus selected desktop
   , ((modMask, xK_Tab), nextWS)
