@@ -38,6 +38,7 @@ xsetroot -cursor_name left_ptr &
 #starting utility applications at boot time
 # run variety &
 run nm-applet &
+run clipmenud &
 # run pamac-tray &
 run xfce4-power-manager &
 run volumeicon &
