@@ -79,8 +79,9 @@ myModMask = mod4Mask
 encodeCChar = map fromIntegral . B.unpack
 myFocusFollowsMouse = True
 myBorderWidth = 3
-myWorkspaces = ["main", "alt", "3","4","5","6","7","8","9","10"]
--- myWorkspaces    = ["\61612","\61899","\61947","\61635","\61502","\61501","\61705","\61564","\62150","\61872"]
+myWorkspaces = ["main", "alt", "3","4","5"]
+--myWorkspaces = ["main", "alt", "3","4","5","6","7","8","9","10"]
+--myWorkspaces    = ["\61612","\61899","\61947","\61635","\61502","\61501","\61705","\61564","\62150","\61872"]
 --myWorkspaces    = ["1","2","3","4","5","6","7","8","9","10"]
 --myWorkspaces    = ["I","II","III","IV","V","VI","VII","VIII","IX","X"]
 
@@ -90,7 +91,7 @@ myBaseConfig = desktopConfig
 myManageHook = composeAll . concat $
     [ [isDialog --> doCenterFloat]
     , [className =? c --> doCenterFloat | c <- myCFloats]
-    , [title =? t --> doFloat | t <- myTFloats]
+    , [title =? t --> doCenterFloat | t <- myTFloats]
     , [resource =? r --> doFloat | r <- myRFloats]
     , [resource =? i --> doIgnore | i <- myIgnores]
     , [className =? f --> doFullFloat | f <- myFFloats]
@@ -107,8 +108,8 @@ myManageHook = composeAll . concat $
     ]
     where
     -- doShiftAndGo = doF . liftM2 (.) W.greedyView W.shift
-    myCFloats = ["Arandr", "Arcolinux-tweak-tool.py", "Arcolinux-welcome-app.py", "Galculator", "feh", "mpv", "Xfce4-terminal"]
-    myTFloats = ["Downloads", "Save As..."]
+    myCFloats = ["Arandr", "Arcolinux-tweak-tool.py", "Arcolinux-welcome-app.py", "Galculator", "feh", "Nitrogen", "mpv", "Xfce4-terminal", "Screen"]
+    myTFloats = ["Two-factor authentication", "Downloads", "Save As...", "XMonad Help"]
     myRFloats = []
     myIgnores = ["desktop_window"]
     myFFloats = ["Arcologout.py"]
@@ -159,6 +160,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   [((modMask, xK_c), spawn $ "conky-toggle" )
   , ((modMask, xK_f), sendMessage $ Toggle NBFULL)
   , ((modMask, xK_h), spawn $ myTerminal ++ " -t 'Activity Monitor | gotop' -e gotop" )
+  , ((modMask, xK_slash), spawn $ myTerminal ++ " -t 'XMonad Help' -e bat --style=plain --theme=Nord ~/.config/xmonad/README.md" )
   , ((modMask, xK_p), spawn $ dmenuCmd )
   , ((modMask, xK_q), kill )
   , ((modMask, xK_t), spawn $ "$HOME/.xmonad/scripts/toggle-stalonebar.sh" )
@@ -343,7 +345,8 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 
   --Keyboard layouts
   --qwerty users use this line
-   | (i, k) <- zip (XMonad.workspaces conf) [xK_1,xK_2,xK_3,xK_4,xK_5,xK_6,xK_7,xK_8,xK_9,xK_0]
+  -- | (i, k) <- zip (XMonad.workspaces conf) [xK_1,xK_2,xK_3,xK_4,xK_5,xK_6,xK_7,xK_8,xK_9,xK_0]
+   | (i, k) <- zip (XMonad.workspaces conf) [xK_1,xK_2,xK_3,xK_4,xK_5]
 
   --French Azerty users use this line
   -- | (i, k) <- zip (XMonad.workspaces conf) [xK_ampersand, xK_eacute, xK_quotedbl, xK_apostrophe, xK_parenleft, xK_minus, xK_egrave, xK_underscore, xK_ccedilla , xK_agrave]
